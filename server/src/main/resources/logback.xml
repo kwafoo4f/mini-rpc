@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="PATTERN" value="mini-rpc-server %d{HH:mm:ss} [%thread,%X{REQUEST_UUID}] %-5level %logger{18} - %msg%n"/>
+
+    <property name="FILE-PATH" value="/data/logs"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="APPLICATION-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${FILE-PATH}/mini-rpc/application/application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${FILE-PATH}/mini-rpc/application/application.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>100</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <appender name="SHOW-DEVICE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${FILE-PATH}/mini-rpc/application/show_device.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${FILE-PATH}/mini-rpc/application/show_device.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>100</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
